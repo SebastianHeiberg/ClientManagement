@@ -4,11 +4,15 @@ public class ControllerMain {
 
   private JFrame frame;
   private JMenuBar menubar;
-  private JMenu menuClient;
+  private JMenu manageClient;
   private JMenuItem createClient;
   private JMenuItem deleteClient;
-  private JMenuItem readInfoClient;
   private JMenuItem updateInfoClient;
+  private JMenu menuClientInfo;
+  private JMenu menuAppointments;
+  private JMenuItem manageAppointments;
+  private JMenuItem viewAppointments;
+
 
   public ControllerMain(){
     this.frame = new JFrame("Client Management");
@@ -19,19 +23,26 @@ public class ControllerMain {
 
     //Menubar
     menubar = new JMenuBar();
-    menuClient = new JMenu("Client");
+    manageClient = new JMenu("Manage Client");
     createClient = new JMenuItem("Create new client");
     deleteClient = new JMenuItem("Delete client");
-    readInfoClient = new JMenuItem("Read client info");
     updateInfoClient = new JMenuItem("Update client info");
 
-    frame.setJMenuBar(menubar);
-    menubar.add(menuClient);
-    menuClient.add(createClient);
-    menuClient.add(deleteClient);
-    menuClient.add(readInfoClient);
-    menuClient.add(updateInfoClient);
+    menuClientInfo = new JMenu("Client info");
 
+    menuAppointments = new JMenu("Appointments");
+    manageAppointments = new JMenuItem("Manage appointments");
+    viewAppointments = new JMenuItem("View appointments");
+
+    frame.setJMenuBar(menubar);
+    menubar.add(manageClient);
+    manageClient.add(createClient);
+    manageClient.add(deleteClient);
+    manageClient.add(updateInfoClient);
+    menubar.add(menuClientInfo);
+    menubar.add(menuAppointments);
+    menuAppointments.add(manageAppointments);
+    menuAppointments.add(viewAppointments);
 
     frame.revalidate();
   }
