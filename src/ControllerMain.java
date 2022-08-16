@@ -1,3 +1,5 @@
+import Functions.AddNote;
+import Functions.ChooseClient;
 import Functions.CreateClient;
 
 import javax.swing.*;
@@ -45,6 +47,7 @@ public class ControllerMain {
 
     createClient.addActionListener(alCreateNewClient);
     deleteClient.addActionListener(alDeleteClient);
+    addNote.addActionListener(alAddNote);
 
     frame.revalidate();
   }
@@ -58,24 +61,24 @@ public class ControllerMain {
     }
   };
 
-  ActionListener alDeleteClient = new ActionListener() {
+  ActionListener alAddNote = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
-      JPanel test = new JPanel(new BorderLayout());
-      JLabel test2 = new JLabel("TEEEST");
-      frame.setContentPane(test);
-      test.add(test2);
-      test.setBackground(Color.ORANGE);
+      ChooseClient chooseClient = new ChooseClient("addnote",frame);
+      frame.setContentPane(chooseClient);
       frame.revalidate();
     }
   };
 
-  ActionListener alMakeAppointment = new ActionListener() {
+  ActionListener alDeleteClient = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
-
+      ChooseClient chooseClient = new ChooseClient("deleteClient",frame);
+      frame.setContentPane(chooseClient);
+      frame.revalidate();
     }
   };
+
 
   public void run() {
 
