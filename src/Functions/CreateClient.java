@@ -146,6 +146,12 @@ public class CreateClient extends JPanel {
           clientList.setClients(filehandler.loadClients());
           clientList.getClients().add(client);
           filehandler.saveClients(clientList.getClients());
+          inputName.setText("");
+          inputAge.setText("");
+          inputIndustry.setText("");
+          inputPhoneNumber.setText("");
+          inputIssue.setText("");
+
         }
 
       } catch (NumberFormatException ne) {
