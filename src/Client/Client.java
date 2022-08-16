@@ -7,6 +7,7 @@ public class Client {
   private String industry;
   private String phone_Number;
   private String issue;
+//  private int id;
 
   public Client (String name, int age, String industry, String phone_Number, String issue) {
     this.name = name;
@@ -15,4 +16,28 @@ public class Client {
     this.phone_Number = phone_Number;
     this.issue = issue;
   }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public String getIndustry() {
+    return industry;
+  }
+
+  public String getPhone_Number() {
+    return phone_Number;
+  }
+
+  public String getIssue() {
+    return issue;
+  }
+
+//  public int getId() {
+//    return id;
+//  }
 }

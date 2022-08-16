@@ -1,44 +1,35 @@
 import Functions.CreateClient;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ControllerMain {
 
-  private JFrame frame;
-  private JMenuBar menubar;
-  private JMenu manageClient;
-  private JMenuItem createClient;
-  private JMenuItem deleteClient;
-  private JMenuItem updateInfoClient;
-  private JMenu menuClientInfo;
-  private JMenu menuAppointments;
-  private JMenuItem manageAppointments;
-  private JMenuItem viewAppointments;
+  private final JFrame frame;
 
-
-  public ControllerMain(){
+  public ControllerMain() {
     this.frame = new JFrame("Client Management");
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    frame.setSize(600,600);
+    frame.setSize(600, 600);
     frame.setLocationRelativeTo(null);
 
     //Menubar
-    menubar = new JMenuBar();
-    manageClient = new JMenu("Manage Client");
-    createClient = new JMenuItem("Create new client");
-    deleteClient = new JMenuItem("Delete client");
-    updateInfoClient = new JMenuItem("Update client info");
+    JMenuBar menubar = new JMenuBar();
+    JMenu manageClient = new JMenu("Manage Client");
+    JMenuItem createClient = new JMenuItem("Create new client");
+    JMenuItem deleteClient = new JMenuItem("Delete client");
+    JMenuItem updateInfoClient = new JMenuItem("Update client info");
 
-    menuClientInfo = new JMenu("Client info");
+    JMenu menuClientInfo = new JMenu("Client info");
+    JMenuItem readNotes = new JMenuItem("Read notes");
+    JMenuItem addNote = new JMenuItem("Add note");
 
-    menuAppointments = new JMenu("Appointments");
-    manageAppointments = new JMenuItem("Manage appointments");
-    viewAppointments = new JMenuItem("View appointments");
+    JMenu menuAppointments = new JMenu("Appointments");
+    JMenuItem manageAppointments = new JMenuItem("Manage appointments");
+    JMenuItem viewAppointments = new JMenuItem("View appointments");
 
     frame.setJMenuBar(menubar);
     menubar.add(manageClient);
@@ -49,39 +40,46 @@ public class ControllerMain {
     menubar.add(menuAppointments);
     menuAppointments.add(manageAppointments);
     menuAppointments.add(viewAppointments);
+    menuClientInfo.add(readNotes);
+    menuClientInfo.add(addNote);
 
     createClient.addActionListener(alCreateNewClient);
-    deleteClient.addActionListener(alDelte);
+    deleteClient.addActionListener(alDeleteClient);
 
     frame.revalidate();
   }
 
-ActionListener alCreateNewClient = new ActionListener() {
+  ActionListener alCreateNewClient = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
       CreateClient createClient = new CreateClient();
       frame.setContentPane(createClient);
-      frame.revalidate();    }
+      frame.revalidate();
+    }
   };
 
-ActionListener alDelte = new ActionListener() {
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    JPanel test = new JPanel(new BorderLayout());
-    JLabel test2 = new JLabel("TEEEST");
-    frame.setContentPane(test);
-    test.add(test2);
-    test.setBackground(Color.ORANGE);
-    frame.revalidate();
+  ActionListener alDeleteClient = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      JPanel test = new JPanel(new BorderLayout());
+      JLabel test2 = new JLabel("TEEEST");
+      frame.setContentPane(test);
+      test.add(test2);
+      test.setBackground(Color.ORANGE);
+      frame.revalidate();
+    }
+  };
+
+  ActionListener alMakeAppointment = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+  };
+
+  public void run() {
+
+
   }
-};
-
-public void run() {
-
-//    CreateClient createClient = new CreateClient();
-//    frame.setContentPane(createClient);
-//    frame.revalidate();
-
-}
 
 }

@@ -7,15 +7,18 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Client.ClientList;
+import Persistens.Filehandler;
 
 public class CreateClient extends JPanel {
 
+  private final ClientList clientList = new ClientList();
+  private final Filehandler filehandler = new Filehandler();
   JTextField inputName;
   JTextField inputAge;
   JTextField inputIndustry;
   JTextField inputPhoneNumber;
   JTextField inputIssue;
-
 
   public CreateClient() {
 
@@ -27,7 +30,7 @@ public class CreateClient extends JPanel {
     JLabel labelName = new JLabel("Name");
     JLabel labelAge = new JLabel("Age");
     JLabel labelIndustry = new JLabel("Industry");
-    JLabel labelPhoneNumber = new JLabel("Phone number");
+    JLabel labelPhoneNumber = new JLabel(" Phone number ");
     JLabel labelIssue = new JLabel("Issue");
     JButton buttonCreateNewClient = new JButton("Create new client");
 
@@ -140,6 +143,9 @@ public class CreateClient extends JPanel {
               JOptionPane.WARNING_MESSAGE);
         } else {
           Client client = new Client(clientName, clientAge, clientIndustry, clientPhoneNumber, clientIssue);
+          clientList.setClients(filehandler.loadClients());
+          clientList.getClients().add(client);
+          filehandler.saveClients(clientList.getClients());
         }
 
       } catch (NumberFormatException ne) {
@@ -148,7 +154,6 @@ public class CreateClient extends JPanel {
             "Wrong input.",
             JOptionPane.WARNING_MESSAGE);
       }
-
     }
   };
 
