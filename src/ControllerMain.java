@@ -50,19 +50,19 @@ public class ControllerMain {
     menuAppointments.add(manageAppointments);
     menuAppointments.add(viewAppointments);
 
-    createClient.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        CreateClient createClient = new CreateClient();
-        frame.setContentPane(createClient);
-        frame.revalidate();
-      }
-    });
-
+    createClient.addActionListener(alCreateNewClient);
     deleteClient.addActionListener(alDelte);
 
     frame.revalidate();
   }
+
+ActionListener alCreateNewClient = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      CreateClient createClient = new CreateClient();
+      frame.setContentPane(createClient);
+      frame.revalidate();    }
+  };
 
 ActionListener alDelte = new ActionListener() {
   @Override
