@@ -1,4 +1,10 @@
+import Functions.CreateClient;
+
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class ControllerMain {
 
@@ -44,12 +50,37 @@ public class ControllerMain {
     menuAppointments.add(manageAppointments);
     menuAppointments.add(viewAppointments);
 
+    createClient.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        CreateClient createClient = new CreateClient();
+        frame.setContentPane(createClient);
+        frame.revalidate();
+      }
+    });
+
+    deleteClient.addActionListener(alDelte);
+
     frame.revalidate();
   }
 
+ActionListener alDelte = new ActionListener() {
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    JPanel test = new JPanel(new BorderLayout());
+    JLabel test2 = new JLabel("TEEEST");
+    frame.setContentPane(test);
+    test.add(test2);
+    test.setBackground(Color.ORANGE);
+    frame.revalidate();
+  }
+};
 
 public void run() {
 
+//    CreateClient createClient = new CreateClient();
+//    frame.setContentPane(createClient);
+//    frame.revalidate();
 
 }
 
