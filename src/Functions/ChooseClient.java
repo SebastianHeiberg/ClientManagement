@@ -1,6 +1,11 @@
 package Functions;
 
+import Client.Client;
+import Client.ClientList;
+import Persistens.Filehandler;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,14 +16,37 @@ public class ChooseClient extends JPanel {
   JTextField choiceInput;
   String whatToDoAfterFoundClient;
   JFrame frame;
+  JTextArea foundClientsDisplay;
+  JTextField foundClientInfo;
+  JButton confirmClient;
+  ClientList clientList;
+  Filehandler filehandler;
+  JScrollPane foundClientScrollPanel;
 
   public ChooseClient(String whatToDoAfterFoundClient, JFrame frame) {
+
+    clientList = new ClientList();
+    filehandler = new Filehandler();
 
     JLabel jLabelChoice = new JLabel("Search client by ");
     String[] comboChoices = {"Name", "Age", "Phone number"};
     comboBoxChoice = new JComboBox(comboChoices);
     choiceInput = new JTextField("", 15);
-    JButton testButton = new JButton("Test");
+    JButton searchButton = new JButton("Search");
+    foundClientsDisplay = new JTextArea();
+    JLabel labelClientInfo = new JLabel("Input id ");
+    foundClientInfo = new JTextField("", 15);
+    confirmClient = new JButton("Continue");
+    foundClientScrollPanel = new JScrollPane(foundClientsDisplay);
+    foundClientsDisplay.setRows(10);
+
+    Border blackline = BorderFactory.createLineBorder(Color.BLACK);
+    jLabelChoice.setBorder(blackline);
+    labelClientInfo.setBorder(blackline);
+
+    labelClientInfo.setHorizontalAlignment(JLabel.CENTER);
+    foundClientsDisplay.setEditable(false);
+
 
 
     this.setLayout(new GridBagLayout());
@@ -48,12 +76,51 @@ public class ChooseClient extends JPanel {
     c.gridy = 1;
     c.gridwidth = 4;
     c.gridheight = 1;
-    this.add(testButton, c);
-    testButton.addActionListener(changeFrame);
+    this.add(searchButton, c);
+    searchButton.addActionListener(alSearh);
+
+    c.gridx = 4;
+    c.gridy = 4;
+    c.gridwidth = 8;
+    c.gridheight = 3;
+    this.add(foundClientScrollPanel, c);
+
+    c.gridx = 4;
+    c.gridy = 8;
+    c.gridwidth = 2;
+    c.gridheight = 1;
+    this.add(labelClientInfo, c);
+
+    c.gridx = 6;
+    c.gridy = 8;
+    c.gridwidth = 2;
+    c.gridheight = 1;
+    this.add(foundClientInfo, c);
+
+    c.gridx = 4;
+    c.gridy = 9;
+    c.gridwidth = 4;
+    c.gridheight = 1;
+    this.add(confirmClient, c);
+    confirmClient.addActionListener(changeFrame);
 
     this.whatToDoAfterFoundClient = whatToDoAfterFoundClient;
     this.frame = frame;
+    frame.revalidate();
   }
+
+  ActionListener alSearh = new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+      clientList.setClients(filehandler.loadClients());
+      foundClientsDisplay.setText("");
+
+      for (int i = 0 ; i < clientList.getClients().size();i ++){
+        Client client = clientList.getClients().get(i);
+        foundClientsDisplay.append(client.getName()+"\n");
+      }
+    }
+  };
 
   ActionListener changeFrame = new ActionListener() {
     @Override
