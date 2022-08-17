@@ -102,7 +102,7 @@ public class ChooseClient extends JPanel {
     c.gridwidth = 4;
     c.gridheight = 1;
     this.add(confirmClient, c);
-    confirmClient.addActionListener(changeFrame);
+    confirmClient.addActionListener(alContinue);
 
     this.whatToDoAfterFoundClient = whatToDoAfterFoundClient;
     this.frame = frame;
@@ -117,12 +117,16 @@ public class ChooseClient extends JPanel {
 
       for (int i = 0 ; i < clientList.getClients().size();i ++){
         Client client = clientList.getClients().get(i);
-        foundClientsDisplay.append(client.getName()+"\n");
+        foundClientsDisplay.append(client.getName()+", ");
+        foundClientsDisplay.append("Age: " + client.getAge()+", ");
+        foundClientsDisplay.append("Industry: " + client.getIndustry()+", ");
+        foundClientsDisplay.append("Phone: " + client.getPhone_Number()+", ");
+        foundClientsDisplay.append("Id: "+ client.getId() + "\n");
       }
     }
   };
 
-  ActionListener changeFrame = new ActionListener() {
+  ActionListener alContinue = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
 
