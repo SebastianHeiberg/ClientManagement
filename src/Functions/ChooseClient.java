@@ -134,7 +134,7 @@ public class ChooseClient extends JPanel {
         AddNote addNote = new AddNote();
         frame.setContentPane(addNote);
       } else if (whatToDoAfterFoundClient.equals("deleteClient")) {
-        DeleteClient deleteClient = new DeleteClient();
+        DeleteClient deleteClient = new DeleteClient(new Client("Testy Mctester",20,"Testing a Tester","30476666","A test is not enough, how big can this get"),frame);
         frame.setContentPane(deleteClient);
 
       }
@@ -142,6 +142,4 @@ public class ChooseClient extends JPanel {
 
     }
   };
-
-
 }

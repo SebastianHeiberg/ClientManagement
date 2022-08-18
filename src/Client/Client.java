@@ -15,7 +15,7 @@ public class Client {
     this.industry = industry;
     this.phone_Number = phone_Number;
     this.issue = issue;
-    this.id = name.substring(0,3) + phone_Number.substring(phone_Number.length()-3);
+    this.id = name.substring(0,3) + phone_Number.substring(phone_Number.length()-4);
   }
 
   public String getId() {
