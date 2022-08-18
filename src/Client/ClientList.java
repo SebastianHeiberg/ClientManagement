@@ -26,12 +26,29 @@ public class ClientList {
     for (int i = 0 ; i < clients.size();i ++){
       Client client = clients.get(i);
 
-      if (searchType.equals("name") && client.getName().contains(keyword)){
+      if (searchType.equals("Name") && client.getName().contains(keyword)){
+        result.add(client);
+      } else if (searchType.equals("Age") && client.getAge().equals(keyword)){
+        result.add(client);
+      } else if (searchType.equals("Phone number") && client.getPhone_Number().contains(keyword)){
         result.add(client);
       }
 
     }
     return result;
+  }
+
+  public Client findSpecificClient (String id) {
+
+    for (int i = 0 ; i < clients.size();i ++){
+      Client client = clients.get(i);
+
+      if (client.getId().equals(id)){
+        return client;
+      }
+
+    }
+    return null;
   }
 
   }

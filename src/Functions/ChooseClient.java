@@ -24,6 +24,7 @@ public class ChooseClient extends JPanel {
   ClientList clientList;
   Filehandler filehandler;
   JScrollPane foundClientScrollPanel;
+  Client choosenClient;
   Ui ui = new Ui();
 
   public ChooseClient(String whatToDoAfterFoundClient, JFrame frame) {
@@ -49,7 +50,6 @@ public class ChooseClient extends JPanel {
 
     labelClientInfo.setHorizontalAlignment(JLabel.CENTER);
     foundClientsDisplay.setEditable(false);
-
 
 
     this.setLayout(new GridBagLayout());
@@ -117,7 +117,9 @@ public class ChooseClient extends JPanel {
     public void actionPerformed(ActionEvent e) {
       foundClientsDisplay.setText("");
       clientList.setClients(filehandler.loadClients());
-      ArrayList <Client> foundClients = clientList.findClients("name","B");
+
+      String searchChoice = comboBoxChoice.getSelectedItem().toString();
+      ArrayList<Client> foundClients = clientList.findClients(searchChoice, choiceInput.getText());
       foundClientsDisplay.append(ui.printClient(foundClients));
 
     }
@@ -127,16 +129,28 @@ public class ChooseClient extends JPanel {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-      if (whatToDoAfterFoundClient.equals("addnote")) {
-        AddNote addNote = new AddNote();
-        frame.setContentPane(addNote);
-      } else if (whatToDoAfterFoundClient.equals("deleteClient")) {
-        DeleteClient deleteClient = new DeleteClient(new Client("Testy Mctester","20","Testing a Tester","30476666","A test is not enough, how big can this get"),frame);
-        frame.setContentPane(deleteClient);
+      switch (whatToDoAfterFoundClient) {
+        case "addnote" -> {
+          AddNote addNote = new AddNote();
+          frame.setContentPane(addNote);
+        }
+        case "deleteClient" -> {
+          String idChoosenClient = foundClientInfo.getText();
+          choosenClient = clientList.findSpecificClient(idChoosenClient);
+          if (choosenClient != null) {
+            DeleteClient deleteClient = new DeleteClient(choosenClient, frame);
+            frame.setContentPane(deleteClient);
+          } else {
+            JOptionPane.showMessageDialog(frame,
+                "Client id not among displayed clients.",
+                "Status",
+                JOptionPane.WARNING_MESSAGE);
+          }
 
+          frame.revalidate();
+        }
       }
-      frame.revalidate();
-
     }
   };
+
 }
