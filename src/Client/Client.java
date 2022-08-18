@@ -3,13 +3,13 @@ package Client;
 public class Client {
 
   private String name;
-  private int age;
+  private String age;
   private String industry;
   private String phone_Number;
   private String issue;
   private String id;
 
-  public Client (String name, int age, String industry, String phone_Number, String issue) {
+  public Client (String name, String age, String industry, String phone_Number, String issue) {
     this.name = name;
     this.age = age;
     this.industry = industry;
@@ -26,7 +26,7 @@ public class Client {
     return name;
   }
 
-  public int getAge() {
+  public String getAge() {
     return age;
   }
 

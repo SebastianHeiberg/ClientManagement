@@ -21,7 +21,7 @@ public class Filehandler {
         String line = file.nextLine();
         Scanner lineinput = new Scanner(line).useDelimiter(";").useLocale(Locale.ENGLISH);
         String name = lineinput.next();
-        int age = Integer.parseInt(lineinput.next());
+        String age = lineinput.next();
         String industry = lineinput.next();
         String phoneNumber = lineinput.next();
         String issue = lineinput.next();

@@ -131,7 +131,7 @@ public class CreateClient extends JPanel {
 
       try {
         String clientName = inputName.getText();
-        int clientAge = Integer.parseInt(inputAge.getText());
+        String clientAge = inputAge.getText();
         String clientIndustry = inputIndustry.getText();
         String clientPhoneNumber = inputPhoneNumber.getText();
         String clientIssue = inputIssue.getText();

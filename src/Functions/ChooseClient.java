@@ -3,12 +3,14 @@ package Functions;
 import Client.Client;
 import Client.ClientList;
 import Persistens.Filehandler;
+import UI.Ui;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class ChooseClient extends JPanel {
 
@@ -22,6 +24,7 @@ public class ChooseClient extends JPanel {
   ClientList clientList;
   Filehandler filehandler;
   JScrollPane foundClientScrollPanel;
+  Ui ui = new Ui();
 
   public ChooseClient(String whatToDoAfterFoundClient, JFrame frame) {
 
@@ -112,17 +115,11 @@ public class ChooseClient extends JPanel {
   ActionListener alSearh = new ActionListener() {
     @Override
     public void actionPerformed(ActionEvent e) {
-      clientList.setClients(filehandler.loadClients());
       foundClientsDisplay.setText("");
+      clientList.setClients(filehandler.loadClients());
+      ArrayList <Client> foundClients = clientList.findClients("name","B");
+      foundClientsDisplay.append(ui.printClient(foundClients));
 
-      for (int i = 0 ; i < clientList.getClients().size();i ++){
-        Client client = clientList.getClients().get(i);
-        foundClientsDisplay.append(client.getName()+", ");
-        foundClientsDisplay.append("Age: " + client.getAge()+", ");
-        foundClientsDisplay.append("Industry: " + client.getIndustry()+", ");
-        foundClientsDisplay.append("Phone: " + client.getPhone_Number()+", ");
-        foundClientsDisplay.append("Id: "+ client.getId() + "\n");
-      }
     }
   };
 
@@ -134,7 +131,7 @@ public class ChooseClient extends JPanel {
         AddNote addNote = new AddNote();
         frame.setContentPane(addNote);
       } else if (whatToDoAfterFoundClient.equals("deleteClient")) {
-        DeleteClient deleteClient = new DeleteClient(new Client("Testy Mctester",20,"Testing a Tester","30476666","A test is not enough, how big can this get"),frame);
+        DeleteClient deleteClient = new DeleteClient(new Client("Testy Mctester","20","Testing a Tester","30476666","A test is not enough, how big can this get"),frame);
         frame.setContentPane(deleteClient);
 
       }

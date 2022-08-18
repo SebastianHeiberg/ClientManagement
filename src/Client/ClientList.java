@@ -18,4 +18,22 @@ public class ClientList {
     this.clients = loadedClients;
   }
 
-}
+  public ArrayList<Client> findClients (String searchType, String keyword) {
+
+    ArrayList <Client> result = new ArrayList<>();
+
+
+    for (int i = 0 ; i < clients.size();i ++){
+      Client client = clients.get(i);
+
+      if (searchType.equals("name") && client.getName().contains(keyword)){
+        result.add(client);
+      }
+
+    }
+    return result;
+  }
+
+  }
+
+
